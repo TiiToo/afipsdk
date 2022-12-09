@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://a7.soap.ws.server.puc.sr/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PersonaServiceA7" targetNamespace="http://a7.soap.ws.server.puc.sr/">
+	<wsdl:types>
+		<xs:schema xmlns:tns="http://a7.soap.ws.server.puc.sr/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://a7.soap.ws.server.puc.sr/" version="1.0">
+			<xs:element name="checkHomonimia" type="tns:checkHomonimia"/>
+			<xs:element name="checkHomonimiaResponse" type="tns:checkHomonimiaResponse"/>
+			<xs:element name="createPersona" type="tns:createPersona"/>
+			<xs:element name="createPersonaResponse" type="tns:createPersonaResponse"/>
+			<xs:element name="dummy" type="tns:dummy"/>
+			<xs:element name="dummyResponse" type="tns:dummyResponse"/>
+			<xs:element name="getIdPersonaByPersona" type="tns:getIdPersonaByPersona"/>
+			<xs:element name="getIdPersonaByPersonaResponse" type="tns:getIdPersonaByPersonaResponse"/>
+			<xs:element name="getPersona" type="tns:getPersona"/>
+			<xs:element name="getPersonaResponse" type="tns:getPersonaResponse"/>
+			<xs:element name="modifyPersona" type="tns:modifyPersona"/>
+			<xs:element name="modifyPersonaResponse" type="tns:modifyPersonaResponse"/>
+			<xs:element name="registerInscripcion" type="tns:registerInscripcion"/>
+			<xs:element name="registerInscripcionResponse" type="tns:registerInscripcionResponse"/>
+			<xs:element name="validatePersona" type="tns:validatePersona"/>
+			<xs:element name="validatePersonaResponse" type="tns:validatePersonaResponse"/>
+			<xs:complexType name="modifyPersona">
+				<xs:sequence>
+					<xs:element name="token" type="xs:string"/>
+					<xs:element name="sign" type="xs:string"/>
+					<xs:element name="cuitSolicitante" type="xs:long"/>
+					<xs:element name="cuitOrganismo" type="xs:long"/>
+					<xs:element name="idTramiteOrganismo" type="xs:string"/>
+					<xs:element name="persona" type="tns:persona"/>
+					<xs:element name="idTipoDocumento" type="xs:int"/>
+					<xs:element name="documento" type="xs:base64Binary"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="persona">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="idPersona" type="xs:long"/>
+					<xs:element name="razonSocial" type="xs:string"/>
+					<xs:element minOccurs="0" name="razonSocialPura" type="xs:string"/>
+					<xs:element name="idFormaJuridica" type="xs:int"/>
+					<xs:element minOccurs="0" name="idFormaJuridicaSubGrupo" type="xs:int"/>
+					<xs:element minOccurs="0" name="numeroInscripcion" type="xs:string"/>
+					<xs:element minOccurs="0" name="fechaAltaNumeroInscripcion" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="idOrganismoInscripcion" type="xs:int"/>
+					<xs:element name="fechaContratoSocial" type="xs:dateTime"/>
+					<xs:element name="plazoDuracion" type="xs:int"/>
+					<xs:element name="idProvinciaInscripcion" type="xs:int"/>
+					<xs:element name="localidadInscripcion" type="xs:string"/>
+					<xs:element name="mesCierre" type="xs:int"/>
+					<xs:element minOccurs="0" name="idAR" type="xs:long"/>
+					<xs:element minOccurs="0" name="capitalSocial" type="xs:double"/>
+					<xs:element minOccurs="0" name="integracionCapital" type="xs:double"/>
+					<xs:element minOccurs="0" name="valorUnitario" type="xs:double"/>
+					<xs:element minOccurs="0" name="aporteDinero" type="xs:double"/>
+					<xs:element minOccurs="0" name="aporteNoDinero" type="xs:double"/>
+					<xs:element minOccurs="0" name="cantidadOrdinaria" type="xs:long"/>
+					<xs:element minOccurs="0" name="cantidadPreferida" type="xs:long"/>
+					<xs:element minOccurs="0" name="cantidadPrivilegiada" type="xs:long"/>
+					<xs:element minOccurs="0" name="cantidadCotizadaBolsa" type="xs:long"/>
+					<xs:element minOccurs="0" name="cantidadCuotas" type="xs:long"/>
+					<xs:element name="objetoSocial" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" name="domicilio" type="tns:domicilio"/>
+					<xs:element maxOccurs="unbounded" name="actividad" type="tns:actividad"/>
+					<xs:element maxOccurs="unbounded" name="componente" type="tns:componente"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="telefono" nillable="true" type="tns:telefono"/>
+					<xs:element maxOccurs="unbounded" name="email" type="tns:email"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="domicilio">
+				<xs:sequence>
+					<xs:element name="idTipoDomicilio" type="xs:int"/>
+					<xs:element minOccurs="0" name="calle" type="xs:string"/>
+					<xs:element minOccurs="0" name="numero" type="xs:int"/>
+					<xs:element minOccurs="0" name="torre" type="xs:string"/>
+					<xs:element minOccurs="0" name="piso" type="xs:string"/>
+					<xs:element minOccurs="0" name="oficinaDptoLocal" type="xs:string"/>
+					<xs:element minOccurs="0" name="manzana" type="xs:string"/>
+					<xs:element minOccurs="0" name="datoAdicional" type="xs:string"/>
+					<xs:element minOccurs="0" name="idTipoDatoAdicional" type="xs:int"/>
+					<xs:element minOccurs="0" name="idCalle" type="xs:int"/>
+					<xs:element minOccurs="0" name="idLocalidad" type="xs:int"/>
+					<xs:element name="idProvincia" type="xs:int"/>
+					<xs:element name="codigoPostal" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="actividad">
+				<xs:sequence>
+					<xs:element name="idActividad" type="xs:long"/>
+					<xs:element name="orden" type="xs:int"/>
+					<xs:element name="periodo" type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="componente">
+				<xs:sequence>
+					<xs:element name="idPersonaComponente" type="xs:long"/>
+					<xs:element name="idTipoComponente" type="xs:int"/>
+					<xs:element name="fechaRelacion" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="fechaVencimiento" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="capitalSuscripto" type="xs:double"/>
+					<xs:element minOccurs="0" name="integracionCapital" type="xs:double"/>
+					<xs:element minOccurs="0" name="aporteDinero" type="xs:double"/>
+					<xs:element minOccurs="0" name="aporteNoDinero" type="xs:double"/>
+					<xs:element minOccurs="0" name="cantidadOrdinaria" type="xs:long"/>
+					<xs:element minOccurs="0" name="cantidadPreferida" type="xs:long"/>
+					<xs:element minOccurs="0" name="cantidadPrivilegiada" type="xs:long"/>
+					<xs:element minOccurs="0" name="esControlante" type="xs:string"/>
+					<xs:element minOccurs="0" name="esVinculante" type="xs:string"/>
+					<xs:element minOccurs="0" name="esControlada" type="xs:string"/>
+					<xs:element minOccurs="0" name="porcentajeParticipacion" type="xs:decimal"/>
+					<xs:element minOccurs="0" name="idPersonaAdicional" type="xs:long"/>
+					<xs:element minOccurs="0" name="cantidadCuotas" type="xs:long"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="telefono">
+				<xs:sequence>
+					<xs:element name="idTipoTelefono" type="xs:int"/>
+					<xs:element name="idTipoLinea" type="xs:int"/>
+					<xs:element minOccurs="0" name="idOperador" type="xs:int"/>
+					<xs:element name="area" type="xs:int"/>
+					<xs:element name="numero" type="xs:long"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="email">
+				<xs:sequence>
+					<xs:element name="direccion" type="xs:string"/>
+					<xs:element name="idTipoEmail" type="xs:int"/>
+					<xs:element name="esDomicilioFiscalElectronico" type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="modifyPersonaResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="modifyPersonaReturn" type="tns:modifyPersonaReturn"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="modifyPersonaReturn">
+				<xs:complexContent>
+					<xs:extension base="tns:returnObject">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType abstract="true" name="returnObject">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="codigoAdvertencia" nillable="true" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="codigoError" nillable="true" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="mensajeAdvertencia" nillable="true" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="mensajeError" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="metadata" type="tns:metadata"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="metadata">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="fechaHora" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="servidor" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getIdPersonaByPersona">
+				<xs:sequence>
+					<xs:element name="token" type="xs:string"/>
+					<xs:element name="sign" type="xs:string"/>
+					<xs:element name="cuitSolicitante" type="xs:long"/>
+					<xs:element name="cuitOrganismo" type="xs:long"/>
+					<xs:element name="idTramiteOrganismo" type="xs:string"/>
+					<xs:element name="persona" type="tns:persona"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getIdPersonaByPersonaResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="getIdPersonaByPersonaReturn" type="tns:getIdPersonaByPersonaReturn"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getIdPersonaByPersonaReturn">
+				<xs:complexContent>
+					<xs:extension base="tns:returnObject">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="idPersona" type="xs:long"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="getPersona">
+				<xs:sequence>
+					<xs:element name="token" type="xs:string"/>
+					<xs:element name="sign" type="xs:string"/>
+					<xs:element name="idPersona" type="xs:long"/>
+					<xs:element name="cuitOrganismo" type="xs:long"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getPersonaResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="getPersonaReturn" type="tns:getPersonaReturn"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getPersonaReturn">
+				<xs:complexContent>
+					<xs:extension base="tns:returnObject">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="persona" type="tns:persona"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="dummy">
+				<xs:sequence/>
+			</xs:complexType>
+			<xs:complexType name="dummyResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="return" type="tns:dummyReturn"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="dummyReturn">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="appserver" type="xs:string"/>
+					<xs:element minOccurs="0" name="authserver" type="xs:string"/>
+					<xs:element minOccurs="0" name="dbserver" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="registerInscripcion">
+				<xs:sequence>
+					<xs:element name="token" type="xs:string"/>
+					<xs:element name="sign" type="xs:string"/>
+					<xs:element name="cuitSolicitante" type="xs:long"/>
+					<xs:element name="cuitOrganismo" type="xs:long"/>
+					<xs:element name="idTramiteOrganismo" type="xs:string"/>
+					<xs:element name="idPersona" type="xs:long"/>
+					<xs:element name="numeroInscripcion" type="xs:string"/>
+					<xs:element name="fechaAltaNumeroInscripcion" type="xs:dateTime"/>
+					<xs:element name="idTipoDocumento" type="xs:int"/>
+					<xs:element name="documento" type="xs:base64Binary"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="registerInscripcionResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="registerInscripcionReturn" type="tns:registerInscripcionReturn"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="registerInscripcionReturn">
+				<xs:complexContent>
+					<xs:extension base="tns:returnObject">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="createPersona">
+				<xs:sequence>
+					<xs:element name="token" type="xs:string"/>
+					<xs:element name="sign" type="xs:string"/>
+					<xs:element name="cuitSolicitante" type="xs:long"/>
+					<xs:element name="cuitOrganismo" type="xs:long"/>
+					<xs:element name="idTramiteOrganismo" type="xs:string"/>
+					<xs:element name="persona" type="tns:persona"/>
+					<xs:element name="idTipoDocumento" type="xs:int"/>
+					<xs:element name="documento" type="xs:base64Binary"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="createPersonaResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="createPersonaReturn" type="tns:createPersonaReturn"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="createPersonaReturn">
+				<xs:complexContent>
+					<xs:extension base="tns:returnObject">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="idPersona" type="xs:long"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="validatePersona">
+				<xs:sequence>
+					<xs:element name="token" type="xs:string"/>
+					<xs:element name="sign" type="xs:string"/>
+					<xs:element name="cuitSolicitante" type="xs:long"/>
+					<xs:element name="cuitOrganismo" type="xs:long"/>
+					<xs:element name="idTramiteOrganismo" type="xs:string"/>
+					<xs:element name="persona" type="tns:persona"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="validatePersonaResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="validatePersonaReturn" type="tns:validatePersonaReturn"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="validatePersonaReturn">
+				<xs:complexContent>
+					<xs:extension base="tns:returnObject">
+						<xs:sequence/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="checkHomonimia">
+				<xs:sequence>
+					<xs:element name="token" type="xs:string"/>
+					<xs:element name="sign" type="xs:string"/>
+					<xs:element name="cuitSolicitante" type="xs:long"/>
+					<xs:element name="cuitOrganismo" type="xs:long"/>
+					<xs:element name="razonSocial" type="xs:string"/>
+					<xs:element name="razonSocialPura" type="xs:string"/>
+					<xs:element name="idFormaJuridica" type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="checkHomonimiaResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="checkHomonimiaReturn" type="tns:checkHomonimiaReturn"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="checkHomonimiaReturn">
+				<xs:complexContent>
+					<xs:extension base="tns:returnObject">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="existeHomonima" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="getPersona">
+		<wsdl:part element="tns:getPersona" name="parameters"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="createPersona">
+		<wsdl:part element="tns:createPersona" name="parameters"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="registerInscripcion">
+		<wsdl:part element="tns:registerInscripcion" name="parameters"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="validatePersonaResponse">
+		<wsdl:part element="tns:validatePersonaResponse" name="parameters"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="modifyPersona">
+		<wsdl:part element="tns:modifyPersona" name="parameters"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getPersonaResponse">
+		<wsdl:part element="tns:getPersonaResponse" name="parameters"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="checkHomonimiaResponse">
+		<wsdl:part element="tns:checkHomonimiaResponse" name="parameters"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="dummy">
+		<wsdl:part element="tns:dummy" name="parameters"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="checkHomonimia">
+		<wsdl:part element="tns:checkHomonimia" name="parameters"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getIdPersonaByPersona">
+		<wsdl:part element="tns:getIdPersonaByPersona" name="parameters"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="dummyResponse">
+		<wsdl:part element="tns:dummyResponse" name="parameters"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="createPersonaResponse">
+		<wsdl:part element="tns:createPersonaResponse" name="parameters"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="modifyPersonaResponse">
+		<wsdl:part element="tns:modifyPersonaResponse" name="parameters"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getIdPersonaByPersonaResponse">
+		<wsdl:part element="tns:getIdPersonaByPersonaResponse" name="parameters"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="registerInscripcionResponse">
+		<wsdl:part element="tns:registerInscripcionResponse" name="parameters"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="validatePersona">
+		<wsdl:part element="tns:validatePersona" name="parameters"> </wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="PersonaServiceA7">
+		<wsdl:operation name="modifyPersona">
+			<wsdl:input message="tns:modifyPersona" name="modifyPersona"> </wsdl:input>
+			<wsdl:output message="tns:modifyPersonaResponse" name="modifyPersonaResponse"> </wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getIdPersonaByPersona">
+			<wsdl:input message="tns:getIdPersonaByPersona" name="getIdPersonaByPersona"> </wsdl:input>
+			<wsdl:output message="tns:getIdPersonaByPersonaResponse" name="getIdPersonaByPersonaResponse"> </wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPersona">
+			<wsdl:input message="tns:getPersona" name="getPersona"> </wsdl:input>
+			<wsdl:output message="tns:getPersonaResponse" name="getPersonaResponse"> </wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="dummy">
+			<wsdl:input message="tns:dummy" name="dummy"> </wsdl:input>
+			<wsdl:output message="tns:dummyResponse" name="dummyResponse"> </wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="registerInscripcion">
+			<wsdl:input message="tns:registerInscripcion" name="registerInscripcion"> </wsdl:input>
+			<wsdl:output message="tns:registerInscripcionResponse" name="registerInscripcionResponse"> </wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="createPersona">
+			<wsdl:input message="tns:createPersona" name="createPersona"> </wsdl:input>
+			<wsdl:output message="tns:createPersonaResponse" name="createPersonaResponse"> </wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="validatePersona">
+			<wsdl:input message="tns:validatePersona" name="validatePersona"> </wsdl:input>
+			<wsdl:output message="tns:validatePersonaResponse" name="validatePersonaResponse"> </wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="checkHomonimia">
+			<wsdl:input message="tns:checkHomonimia" name="checkHomonimia"> </wsdl:input>
+			<wsdl:output message="tns:checkHomonimiaResponse" name="checkHomonimiaResponse"> </wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="PersonaServiceA7SoapBinding" type="tns:PersonaServiceA7">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="modifyPersona">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="modifyPersona">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="modifyPersonaResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getIdPersonaByPersona">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="getIdPersonaByPersona">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getIdPersonaByPersonaResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPersona">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="getPersona">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getPersonaResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="dummy">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="dummy">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="dummyResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="registerInscripcion">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="registerInscripcion">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="registerInscripcionResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="createPersona">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="createPersona">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="createPersonaResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="validatePersona">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="validatePersona">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="validatePersonaResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="checkHomonimia">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="checkHomonimia">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="checkHomonimiaResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="PersonaServiceA7">
+		<wsdl:port binding="tns:PersonaServiceA7SoapBinding" name="PersonaServiceA7Port">
+			<soap:address location="https://awshomo.afip.gov.ar/sr-padron/webservices/personaServiceA7"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
